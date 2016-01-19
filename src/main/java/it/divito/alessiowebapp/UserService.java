@@ -1,5 +1,8 @@
 package it.divito.alessiowebapp;
  
+import it.divito.enigma.persistence.HibernateUtil;
+import it.divito.enigma.persistence.Users;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -8,6 +11,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
  
 @Path("/")
 public class UserService {
@@ -54,7 +60,22 @@ public class UserService {
         return response;
     }
 	
-	 public static void main(String[] args) {
-			System.out.println(Boolean.parseBoolean("false"));
+	public static void main(String[] args) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+
+		try {
+			session.beginTransaction();
+			Users stock = new Users();
+
+			stock.setImei("imeiProva");
+			stock.setDeviceName("deviceProva");
+			stock.setMacAddress("macProva");
+			stock.setLives(1);
+
+			session.save(stock);
+			session.getTransaction().commit();
+		} catch(HibernateException e) {
+			System.out.println("Errore:" + e.getMessage());
 		}
+	}
 }
