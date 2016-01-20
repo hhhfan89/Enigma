@@ -1,7 +1,8 @@
 package it.divito.alessiowebapp;
  
-import it.divito.enigma.persistence.HibernateUtil;
-import it.divito.enigma.persistence.Users;
+import it.divito.enigma.persistence.dao.UserDao;
+import it.divito.enigma.persistence.domain.User;
+import it.divito.enigma.persistence.util.HibernateUtil;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -38,44 +39,32 @@ public class UserService {
 	}
 	
 	@POST
-    @Path("/save")
+    @Path("/checkUser")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Resp save(UserInfo info) {      
+    public Resp checkUser(UserInfo userInfo) {      
 		
 		// CREARE OGGETTO CON IMEI (inizialmente)
-		System.out.println("Imei:" + info.getImei());
-		System.out.println("MacAddress:" + info.getMacAddress());
+		System.out.println("Imei:" + userInfo.getImei());
+		System.out.println("MacAddress:" + userInfo.getMacAddress());
+		System.out.println("DeviceName:" + userInfo.getDeviceName());
 		
-		/*
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        session.save(task);
-        session.getTransaction().commit();
-        */
-        Resp response = new Resp();
-        response.setAlreadyRegistered(true);
-        response.setLivesLeft(1);
-        
-        return response;
+		User userDao = Utility.mappingUser(userInfo);
+		if(Integer.parseInt(userInfo.getIdOnRemoteDB()) != 0) {
+			return UserDao.selectUser(Integer.parseInt(userInfo.getIdOnRemoteDB()));
+		}
+		
+		userDao.setLives(1);
+		return UserDao.saveNewUser(userDao);
     }
 	
+	/*
 	public static void main(String[] args) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-
-		try {
-			session.beginTransaction();
-			Users stock = new Users();
-
-			stock.setImei("imeiProva");
-			stock.setDeviceName("deviceProva");
-			stock.setMacAddress("macProva");
-			stock.setLives(1);
-
-			session.save(stock);
-			session.getTransaction().commit();
-		} catch(HibernateException e) {
-			System.out.println("Errore:" + e.getMessage());
-		}
+		UserInfo u = new UserInfo();
+		u.setDeviceName("dev");
+		u.setImei("im1");
+		u.setMacAddress("ma");
+		UserDao.selectUser(Utility.mappingUser(u));
 	}
+	*/
 }

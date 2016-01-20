@@ -9,13 +9,15 @@ public class Resp {
 	
 	private boolean isAlreadyRegistered;
 	private int livesLeft;
+	private int idOnRemoteDB;
 	
 	public Resp() {}
 	
-	public Resp(boolean isAlreadyRegistered, int livesLeft) {
+	public Resp(boolean isAlreadyRegistered, int livesLeft, int idOnRemoteDB) {
 		super();
 		this.isAlreadyRegistered = isAlreadyRegistered;
 		this.livesLeft = livesLeft;
+		this.idOnRemoteDB = idOnRemoteDB;
 	}
 
 	public boolean isAlreadyRegistered() {
@@ -32,6 +34,14 @@ public class Resp {
 
 	public void setLivesLeft(int livesLeft) {
 		this.livesLeft = livesLeft;
+	}
+
+	public int getIdOnRemoteDB() {
+		return idOnRemoteDB;
+	}
+
+	public void setIdOnRemoteDB(int idOnRemoteDB) {
+		this.idOnRemoteDB = idOnRemoteDB;
 	}
 
 }

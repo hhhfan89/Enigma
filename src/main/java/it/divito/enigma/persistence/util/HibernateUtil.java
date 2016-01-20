@@ -1,4 +1,4 @@
-package it.divito.enigma.persistence;
+package it.divito.enigma.persistence.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;

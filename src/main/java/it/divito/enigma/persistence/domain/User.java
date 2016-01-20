@@ -1,4 +1,4 @@
-package it.divito.enigma.persistence;
+package it.divito.enigma.persistence.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "USERS", catalog = "EnigmaDB", uniqueConstraints=@UniqueConstraint(columnNames={"IMEI", "MAC", "DEVICE_NAME"}))
-public class Users implements java.io.Serializable {
+public class User implements java.io.Serializable {
 	
 	private Integer id;
 	private String imei;
