@@ -42,29 +42,21 @@ public class UserService {
     @Path("/checkUser")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Resp checkUser(UserInfo userInfo) {      
+    public static Resp checkUser(UserInfo userInfo) {      
 		
 		// CREARE OGGETTO CON IMEI (inizialmente)
 		System.out.println("Imei:" + userInfo.getImei());
 		System.out.println("MacAddress:" + userInfo.getMacAddress());
 		System.out.println("DeviceName:" + userInfo.getDeviceName());
 		
-		User userDao = Utility.mappingUser(userInfo);
-		if(Integer.parseInt(userInfo.getIdOnRemoteDB()) != 0) {
+		User user = Utility.mappingUser(userInfo);
+		if(userInfo.getIdOnRemoteDB()!=null && Integer.parseInt(userInfo.getIdOnRemoteDB()) != 0) {
 			return UserDao.selectUser(Integer.parseInt(userInfo.getIdOnRemoteDB()));
 		}
 		
-		userDao.setLives(1);
-		return UserDao.saveNewUser(userDao);
+		user.setLives(1);
+		UserDao userDao1 = new UserDao();
+		return userDao1.saveNewUser(user);
     }
 	
-	/*
-	public static void main(String[] args) {
-		UserInfo u = new UserInfo();
-		u.setDeviceName("dev");
-		u.setImei("im1");
-		u.setMacAddress("ma");
-		UserDao.selectUser(Utility.mappingUser(u));
-	}
-	*/
 }
