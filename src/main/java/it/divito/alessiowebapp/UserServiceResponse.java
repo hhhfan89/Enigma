@@ -5,15 +5,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Produces("application/json")
-public class Resp {
+public class UserServiceResponse {
 	
 	private boolean isAlreadyRegistered;
 	private int livesLeft;
-	private int idOnRemoteDB;
+	private Long idOnRemoteDB;
 	
-	public Resp() {}
+	public UserServiceResponse() {}
 	
-	public Resp(boolean isAlreadyRegistered, int livesLeft, int idOnRemoteDB) {
+	public UserServiceResponse(boolean isAlreadyRegistered, int livesLeft, Long idOnRemoteDB) {
 		super();
 		this.isAlreadyRegistered = isAlreadyRegistered;
 		this.livesLeft = livesLeft;
@@ -36,12 +36,19 @@ public class Resp {
 		this.livesLeft = livesLeft;
 	}
 
-	public int getIdOnRemoteDB() {
+	public Long getIdOnRemoteDB() {
 		return idOnRemoteDB;
 	}
 
-	public void setIdOnRemoteDB(int idOnRemoteDB) {
+	public void setIdOnRemoteDB(Long idOnRemoteDB) {
 		this.idOnRemoteDB = idOnRemoteDB;
+	}
+
+	@Override
+	public String toString() {
+		return "UserServiceResponse [isAlreadyRegistered="
+				+ isAlreadyRegistered + ", livesLeft=" + livesLeft
+				+ ", idOnRemoteDB=" + idOnRemoteDB + "]";
 	}
 
 }

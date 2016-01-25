@@ -13,21 +13,20 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "USERS", catalog = "EnigmaDB", uniqueConstraints=@UniqueConstraint(columnNames={"IMEI", "MAC", "DEVICE_NAME"}))
 public class User implements java.io.Serializable {
 	
-	private Integer id;
+	private Long id;
 	private String imei;
 	private String macAddress;
 	private String deviceName;
 	private Integer lives;
 	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

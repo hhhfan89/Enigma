@@ -7,14 +7,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Produces("application/json")
-public class UserInfo implements Serializable{
+public class UserServiceRequest implements Serializable{
+
+	private static final long serialVersionUID = -6676278322477676147L;
 
 	private String imei;
 	private String macAddress;
 	private String deviceName;
-	private String idOnRemoteDB;
+	private long idOnRemoteDB;
 	
-	public UserInfo() {}
+	public UserServiceRequest() {}
 	/*
 	public UserInfo(String imei, String macAddress, String deviceName){
 		this.imei = imei;
@@ -47,11 +49,11 @@ public class UserInfo implements Serializable{
 		this.deviceName = deviceName;
 	}
 
-	public String getIdOnRemoteDB() {
+	public long getIdOnRemoteDB() {
 		return idOnRemoteDB;
 	}
 
-	public void setIdOnRemoteDB(String idOnRemoteDB) {
+	public void setIdOnRemoteDB(long idOnRemoteDB) {
 		this.idOnRemoteDB = idOnRemoteDB;
 	}
 
