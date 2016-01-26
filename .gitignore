@@ -1,2 +1,7 @@
 /target/
 /bin/
+target
+.settings/*
+!.settings/.jsdtscope
+.project
+.classpath
