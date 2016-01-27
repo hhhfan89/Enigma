@@ -1,8 +1,8 @@
 package it.divito.enigma.persistence.dao;
 
-import it.divito.enigma.UserServiceResponse;
 import it.divito.enigma.persistence.domain.User;
 import it.divito.enigma.persistence.util.HibernateUtil;
+import it.divito.enigma.user.UserServiceResponse;
 
 import java.util.List;
 

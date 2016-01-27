@@ -5,22 +5,34 @@
 	<display-name>Restful Web Application</display-name>
  
 	<servlet>
-		<servlet-name>users-serlvet</servlet-name>
+		<servlet-name>enigmaUser-serlvet</servlet-name>
 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>it.divito.enigma</param-value>
-		</init-param>
-		<init-param>
-			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>it.divito.enigma.verify</param-value>
+			<param-value>it.divito.enigma.user</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>users-serlvet</servlet-name>
-		<url-pattern>/users/*</url-pattern>
+		<servlet-name>enigmaUser-serlvet</servlet-name>
+		<url-pattern>/enigma/users/*</url-pattern>
 	</servlet-mapping>
 
+
+	<servlet>
+		<servlet-name>enigmaQuestion-serlvet</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>it.divito.enigma.question</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>enigmaQuestion-serlvet</servlet-name>
+		<url-pattern>/enigma/questions/*</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

@@ -1,4 +1,4 @@
-package it.divito.enigma;
+package it.divito.enigma.user;
 
 import java.io.Serializable;
 

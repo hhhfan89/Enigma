@@ -1,4 +1,4 @@
-package it.divito.enigma;
+package it.divito.enigma.user;
 
 import it.divito.enigma.persistence.domain.User;
 

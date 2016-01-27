@@ -1,4 +1,4 @@
-package it.divito.enigma;
+package it.divito.enigma.user;
 
 import javax.ws.rs.Produces;
 import javax.xml.bind.annotation.XmlRootElement;
