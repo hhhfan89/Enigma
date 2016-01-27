@@ -1,6 +1,6 @@
 package it.divito.enigma.persistence.dao;
 
-import it.divito.alessiowebapp.UserServiceResponse;
+import it.divito.enigma.UserServiceResponse;
 import it.divito.enigma.persistence.domain.User;
 import it.divito.enigma.persistence.util.HibernateUtil;
 

@@ -1,4 +1,4 @@
-package it.divito.alessiowebapp;
+package it.divito.enigma;
 
 import it.divito.enigma.persistence.domain.User;
 

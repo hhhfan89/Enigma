@@ -1,4 +1,4 @@
-package it.divito.alessiowebapp;
+package it.divito.enigma;
 
 import java.io.Serializable;
 

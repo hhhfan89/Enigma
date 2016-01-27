@@ -1,4 +1,4 @@
-package it.divito.alessiowebapp;
+package it.divito.enigma;
 
 import javax.ws.rs.Produces;
 import javax.xml.bind.annotation.XmlRootElement;
