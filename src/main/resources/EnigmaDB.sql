@@ -6,3 +6,10 @@ create table USERS (
 	lives int(5),
 	unique(imei, mac, device_name)
 ) engine=InnoDB;
+
+create table QUESTIONS (
+	id integer auto_increment primary key,
+	question text not null,
+	solution text not null,
+	level int(2)
+) engine=InnoDB;

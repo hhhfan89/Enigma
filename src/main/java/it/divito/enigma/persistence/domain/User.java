@@ -1,5 +1,8 @@
 package it.divito.enigma.persistence.domain;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +13,7 @@ import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name = "USERS", catalog = "EnigmaDB", uniqueConstraints=@UniqueConstraint(columnNames={"IMEI", "MAC", "DEVICE_NAME"}))
+@Table(name = "users", catalog = "enigmawebappopenshift", uniqueConstraints=@UniqueConstraint(columnNames={"imei", "mac", "device_name"}))
 public class User implements java.io.Serializable {
 	
 	private Long id;
@@ -18,6 +21,7 @@ public class User implements java.io.Serializable {
 	private String macAddress;
 	private String deviceName;
 	private Integer lives;
+	private Integer level;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +50,7 @@ public class User implements java.io.Serializable {
 
 	public void setMacAddress(String macAddress) {
 		this.macAddress = macAddress;
-	}
+	} 
 
 	@Column(name = "DEVICE_NAME", nullable = false, length = 100)
 	public String getDeviceName() {
@@ -65,6 +69,14 @@ public class User implements java.io.Serializable {
 	public void setLives(Integer lives) {
 		this.lives = lives;
 	}
-	
+
+	@Column(name = "LEVEL", insertable = false)
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
 	
 }

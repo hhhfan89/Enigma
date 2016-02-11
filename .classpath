@@ -33,5 +33,9 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="lib" path="C:/Users/sdivito.CORP/.m2/repository/org/json/json/20090211/json-20090211.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sdivito.CORP/.m2/repository/org/apache/httpcomponents/httpcore/4.3.1/httpcore-4.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sdivito.CORP/.m2/repository/org/apache/httpcomponents/httpclient/4.3.2/httpclient-4.3.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

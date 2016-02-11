@@ -3,6 +3,21 @@
 "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
+    
+	<session-factory>
+         <property name="hibernate.c3p0.timeout">3000</property>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">ugA96T3bG_rk</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.7.176.130:3306/enigmawebappopenshift</property>
+        <property name="hibernate.connection.username">admin1RywETG</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="show_sql">true</property>
+        
+        <mapping class="it.divito.enigma.persistence.domain.User"></mapping>
+        <mapping class="it.divito.enigma.persistence.domain.Question"></mapping>
+    </session-factory>
+    <!--
     <session-factory>
         <property name="hibernate.c3p0.timeout">3000</property>
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
@@ -14,5 +29,8 @@
         <property name="show_sql">true</property>
         
         <mapping class="it.divito.enigma.persistence.domain.User"></mapping>
+        <mapping class="it.divito.enigma.persistence.domain.Question"></mapping>
     </session-factory>
+    -->
+    
 </hibernate-configuration>

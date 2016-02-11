@@ -11,83 +11,77 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
 import org.hibernate.exception.GenericJDBCException;
 import org.hibernate.exception.JDBCConnectionException;
+
  
 @Path("/")
 public class UserService {
+	
+	final static Logger logger = Logger.getLogger(UserService.class);
  
 	@GET
 	@Path("/verify") 
 	public Response verify(){
-		return Response.status(200).entity("Everything's ok").build();
+		logger.info("Verify, init");
+		boolean isConnected = UserDao.getInstance().checkConnection();
+		logger.info("Verify, connection with db established: " + isConnected);
+		return Response.status(200).entity("Connection with db established: " + isConnected).build();
 	}
 	
 	@POST
     @Path("/saveUser")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public static UserServiceResponse saveUser(UserServiceRequest userInfo) {      
-		
+    public UserServiceResponse saveUser(UserServiceRequest userInfo) {      
+
+		logger.info("saveUser, init");
 		UserServiceResponse response = null;
-		UserDao userDao = new UserDao();
-		
-		// CREARE OGGETTO CON IMEI (inizialmente)
-		System.out.println("Imei:" + userInfo.getImei());
-		System.out.println("MacAddress:" + userInfo.getMacAddress());
-		System.out.println("DeviceName:" + userInfo.getDeviceName());
-		System.out.println("idOnRemoteDB:" + userInfo.getIdOnRemoteDB());
-		
+		UserDao userDao = UserDao.getInstance();
+
+		logger.info("saveUser, userServiceRequest: " + userInfo);
+
 		User user = Utility.mappingUser(userInfo);
+		
 		try {
 			response = userDao.saveNewUser(user);
 		} catch(GenericJDBCException e) {
-			System.out.println("Errore connessione:" + e.getMessage());
+			logger.error("saveUser, connection error:" + e.getMessage(), e);
 		} catch(JDBCConnectionException e) {
-			System.out.println("Connection timeout:" + e.getMessage());
+			logger.error("saveUser, connection timeout:" + e.getMessage(), e);
 		}
+
+		logger.info("saveUser, response: " + response);
 		return response;
-    }
+	}
 	
 	
 	@POST
     @Path("/checkUser")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public static UserServiceResponse checkUser(UserServiceRequest userInfo) {      
+    public UserServiceResponse checkUser(UserServiceRequest userInfo) {      
+		
+		logger.info("checkUser, init");
 		
 		UserServiceResponse response = null;
-		UserDao userDao = new UserDao();
+		UserDao userDao = UserDao.getInstance();
 		
-		// CREARE OGGETTO CON IMEI (inizialmente)
-		System.out.println("Imei:" + userInfo.getImei());
-		System.out.println("MacAddress:" + userInfo.getMacAddress());
-		System.out.println("DeviceName:" + userInfo.getDeviceName());
-		System.out.println("idOnRemoteDB:" + userInfo.getIdOnRemoteDB());
+		logger.info("checkUser, userServiceRequest: " + userInfo);
 		
 		User user = Utility.mappingUser(userInfo);
 		// TODO: pensa al caso di manomissione dell'id..
 		try {
 			response = userDao.selectUser(user);
+		} catch(GenericJDBCException e) {
+			logger.error("checkUser, connection error:" + e.getMessage(), e);
+		} catch(JDBCConnectionException e) {
+			logger.error("checkUser, connection timeout:" + e.getMessage(), e);
 		}
-		catch(GenericJDBCException e) {
-			System.out.println("Errore connessione:" + e.getMessage());
-		}
-		catch(JDBCConnectionException e) {
-			System.out.println("Connection timeout:" + e.getMessage());
-		}
+		
+		logger.info("checkUser, response: " + response);
 		return response;
     }
-	
-	
-	public static void main(String[] args) {
-		UserServiceRequest info = new UserServiceRequest();
-		info.setDeviceName("dev");
-		info.setImei("im");
-		info.setMacAddress("maccc");
-		//info.setIdOnRemoteDB(24);
-		UserServiceResponse r = checkUser(info);
-		System.out.println("Response:" + r.toString());
-	}
 	
 }

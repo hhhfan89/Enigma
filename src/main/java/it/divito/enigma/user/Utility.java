@@ -9,7 +9,7 @@ public class Utility {
 		userDao.setImei(userInfo.getImei());
 		userDao.setMacAddress(userInfo.getMacAddress());
 		userDao.setDeviceName(userInfo.getDeviceName());
-		userDao.setId(userInfo.getIdOnRemoteDB());
+//		userDao.setId(userInfo.getIdOnRemoteDB());
 		return userDao;
 	}
 }

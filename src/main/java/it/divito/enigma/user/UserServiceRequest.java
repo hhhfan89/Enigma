@@ -17,13 +17,14 @@ public class UserServiceRequest implements Serializable{
 	private long idOnRemoteDB;
 	
 	public UserServiceRequest() {}
-	/*
-	public UserInfo(String imei, String macAddress, String deviceName){
+	
+	public UserServiceRequest(String imei, String macAddress, String deviceName, long idOnRemoteDB){
 		this.imei = imei;
 		this.macAddress = macAddress;
 		this.deviceName = deviceName;
+		this.idOnRemoteDB = idOnRemoteDB;
 	}
-	*/
+	
 
 	public String getImei() {
 		return imei;
@@ -55,6 +56,13 @@ public class UserServiceRequest implements Serializable{
 
 	public void setIdOnRemoteDB(long idOnRemoteDB) {
 		this.idOnRemoteDB = idOnRemoteDB;
+	}
+
+	@Override
+	public String toString() {
+		return "UserServiceRequest [imei=" + imei + ", macAddress="
+				+ macAddress + ", deviceName=" + deviceName + ", idOnRemoteDB="
+				+ idOnRemoteDB + "]";
 	}
 
 	

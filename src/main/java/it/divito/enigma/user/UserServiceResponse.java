@@ -10,6 +10,7 @@ public class UserServiceResponse {
 	private boolean isAlreadyRegistered;
 	private int livesLeft;
 	private Long idOnRemoteDB;
+	private int level;
 	
 	public UserServiceResponse() {}
 	
@@ -49,6 +50,14 @@ public class UserServiceResponse {
 		return "UserServiceResponse [isAlreadyRegistered="
 				+ isAlreadyRegistered + ", livesLeft=" + livesLeft
 				+ ", idOnRemoteDB=" + idOnRemoteDB + "]";
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 }
